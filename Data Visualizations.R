@@ -1,3 +1,3 @@
 ### Data Visualizations ###
 eligibility |> ggplot() +
-  geom_point(aes(x = year, y = eligibility))
+  geom_point(aes(x = Year, y = Percent))

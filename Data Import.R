@@ -29,5 +29,3 @@ hstatus <- hstatus |>  row_to_names(row_number = 1)
 hstatus <- cbind(Year = rownames(hstatus), hstatus)
 rownames(hstatus) <- 1:nrow(hstatus)
 hstatus$Year <- as.Date(as.character(hstatus$Year), format = "%Y")
-
-view(hstatus)
