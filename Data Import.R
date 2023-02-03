@@ -13,7 +13,7 @@ forego <- subset(forego, select = c("Year", "Percent"))
 forego$Year <- as.Date(as.character(forego$Year), format = "%Y")
 
 ervisits <- read_csv("Raw Data/er-visits.csv", 
-                     col_names = c("Year", "ER Visits Per Thousand"), skip = 2)
+                     col_names = c("Year", "Visits"), skip = 2)
 ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
 
 finances <- read_csv("Raw Data/finances.csv", 
