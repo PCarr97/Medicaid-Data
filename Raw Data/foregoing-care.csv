@@ -1,0 +1,23 @@
+﻿Indicator,Percent of adults who could not get medical care when needed due to cost by Total (2005 to 2010),,,,
+Notes,The margin of error (MOE) represents the uncertainty of an estimate due to sampling variability; the calculated MOE is 95%. N/A indicates that data were not available or suppressed because the number of sample cases was too small. There is a break in series because BRFSS implemented cell phone sampling and an advanced weighting method in 2011.,,,,
+Description,Rates of adults that forgo needed medical care due to cost&nbsp;for the civilian non-institutionalized population 18 years and over.,,,,
+,,,,,
+,,,,,
+Fips,Location,TimeFrame,Data Type,Data,MOE
+US,United States,2005,Percent,0.13576,0.002516031
+US,United States,2006,Percent,0.13304,0.002895592
+US,United States,2007,Percent,0.13523,0.002475182
+US,United States,2008,Percent,0.14072,0.002564892
+US,United States,2009,Percent,0.14906,0.002618383
+US,United States,2010,Percent,0.1463,0.002349738
+US,United States,2011,Percent,0.16928,0.002348848
+US,United States,2012,Percent,0.16555,0.002454574
+US,United States,2013,Percent,0.15918,0.002297964
+US,United States,2014,Percent,0.14314,0.002247151
+US,United States,2015,Percent,0.13262,0.00221237
+US,United States,2016,Percent,0.13041,0.002122306
+US,United States,2017,Percent,0.13493,0.002350813
+US,United States,2018,Percent,0.12949,0.0022757
+US,United States,2019,Percent,0.13426,0.002290107
+US,United States,2020,Percent,0.10656,0.002373789
+US,United States,2021,Percent,0.09881,2.10E-03
