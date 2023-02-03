@@ -13,7 +13,10 @@ eligibility |>
 
 # Forego plot
 forego |> ggplot() +
-  geom_line(aes(x = Year, y = Percent), size = 1.5, color = "darkgreen")
+  geom_line(aes(x = Year, y = Percent), size = 1.5, color = "darkgreen") +
+  ylab("% Foregoing") +
+  ggtitle("Percentage Foregoing Medical Care Due to Cost") +
+  geom_vline(aes(xintercept = as.Date(Year[6]), color = "red"))
 
 # Eligibility vs. Percentage foregoing care #
 ggplot() +
@@ -22,8 +25,7 @@ ggplot() +
   scale_x_date(limits = as.Date(c("2005-01-01","2021-01-01"))) +
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
-  ggtitle("Medicaid Eligibility Trends") + 
-  labs()
+  ggtitle("Medicaid Eligibility Trends")
 
 
 
