@@ -3,6 +3,7 @@ install.packages('pacman')
 library(pacman)
 p_load(tidyverse, dplyr, ggplot2)
 
+# Eligibility plot
 eligibility |> 
   ggplot() +
   geom_point(aes(x = Year, y = Percent), size = 3, color = "blue") +
@@ -10,14 +11,20 @@ eligibility |>
   ylab("Eligibility as % of Poverty Line") +
   ggtitle("Medicaid Eligibility Trends")
 
+# Forego plot
+forego |> ggplot() +
+  geom_line(aes(x = Year, y = Percent), size = 1.5, color = "darkgreen")
+
+# Eligibility vs. Percentage foregoing care #
 ggplot() +
-  filter(eligibility$Year > 2005) |> 
-  geom_point(data = eligibility, aes(x = Year, y = Percent), size = 2, color = "blue") +
+  geom_point(data = eligibility, aes(x = Year, y = Percent), size = 2.5, color = "blue") +
   geom_line(data = forego, aes(x = Year, y = Percent), size = 1.5) +
-  #scale_y_continuous(sec_axis(trans = ~., name = "Assets")) +
+  scale_x_date(limits = as.Date(c("2005-01-01","2021-01-01"))) +
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
-  ggtitle("Medicaid Eligibility Trends")
+  ggtitle("Medicaid Eligibility Trends") + 
+  labs()
+
 
 
 
@@ -27,8 +34,7 @@ eligibility |> ggplot() +
 ervisits |> ggplot() +
   geom_point(aes(x = Year, y = Visits))
 
-forego |> ggplot() +
-  geom_point(aes(x = Year, y = Percent))
+
 
 finances |> ggplot() +
   geom_point(aes(x = Year, y = Debt), size = 2, color = "red") +
