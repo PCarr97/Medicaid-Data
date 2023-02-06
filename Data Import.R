@@ -37,25 +37,8 @@ finances$Year <- as.Date(as.character(finances$Year), format = "%Y")
 hstatus <- read_csv("Raw Data/health-status.csv",
                     col_names = c("Year", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", 
                                   "2013", "2014", "2015", "2016", "2017", "2018", "2019"), skip = 5)
-hstatus <- as.data.frame(t(hstatus[1:22, 1:16]))
+hstatus <- as.data.frame(t(hstatus[1:22, 1:15]))
 hstatus <- hstatus |>  row_to_names(row_number = 1)
-hstatus <- cbind(Year = rownames(hstatus), hstatus)
-rownames(hstatus) <- 1:nrow(hstatus)
-hstatus$Year <- as.Date(as.character(hstatus$Year), format = "%Y")
-hstatus[,2:22] = apply(hstatus[,2:22], 2, function(x) as.numeric(as.character(x)))
-colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Under6", "6to17", "18to44",
-                       "18to24", "25to44", "45to54", "55to64", "Over65", "65to74", "Over75", "Male", 
-                       "Female", "White", "Black", "Hispanic", "Under100pct", "100to199pct", "200to399pct", 
-                       "Over400pct")
-
-
-
-hstatus <- read_csv("Raw Data/health-status.csv",
-                    col_names = c("Year", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", 
-                                  "2013", "2014", "2015", "2016", "2017", "2018", "2019"), skip = 5)
-hstatus <- as.data.frame(t(hstatus[1:22, 1:16]))
-hstatus <- hstatus |>  
-  row_to_names(row_number = 1)
 hstatus <- cbind(Year = rownames(hstatus), hstatus)
 rownames(hstatus) <- 1:nrow(hstatus)
 hstatus$Year <- as.Date(as.character(hstatus$Year), format = "%Y")
