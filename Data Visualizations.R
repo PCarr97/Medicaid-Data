@@ -21,7 +21,15 @@ forego |> ggplot() +
   ylim(0, 0.17) +
   xlab("Year") +
   ylab("% Foregoing") +
-  ggtitle("Percentage Foregoing Medical Care Due to Cost")
+  ggtitle("Percentage Foregoing Medical Care Due to Cost") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
 
 
 
@@ -51,7 +59,7 @@ finances |> ggplot(aes(x = Year)) +
 
 
 
-#Health Status of Male v Female example plot
+#Health Status of White v Black example plot
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = White, color = 'blue4'), size = 1.5) +
   geom_line(aes(y = Black, color = 'darkgreen'), size = 1.5) +
@@ -65,7 +73,11 @@ hstatus |> ggplot(aes(x = Year)) +
 #Health status of those under poverty line
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct, color = 'red'), size = 1.5) +
-  geom_vline(aes(xintercept = as.Date(Year[9]), color = "blue"), linetype = 4, size = 1.75)
+  geom_vline(aes(xintercept = as.Date(Year[9]), color = "blue"), linetype = 4, size = 1.75) +
+  xlab("Year") + 
+  ylab("Percentage") +
+  ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
+  theme(legend.position="none")
 
 
 
