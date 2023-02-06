@@ -8,22 +8,30 @@ eligibility <- read_csv("Raw Data/eligibility.csv",
                         col_names = c("Year", "Percent"), skip = 2)
 eligibility$Year <- as.Date(as.character(eligibility$Year), format = "%Y")
 
+
+
 # Import and format data on Americans foregoing medical care due to cost
 forego <- read_csv("Raw Data/foregoing-care.csv", 
                    col_names = c("Abv", "Location", "Year", "Format", "Percent", "MOE"), skip = 6)
 forego <- subset(forego, select = c("Year", "Percent"))
 forego$Year <- as.Date(as.character(forego$Year), format = "%Y")
 
+
+
 # Import and format data on ER visits per 1000 Americans
 ervisits <- read_csv("Raw Data/er-visits.csv", 
                      col_names = c("Year", "Visits"), skip = 2)
 ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
+
+
 
 # Import and format data on assets, in thousands, of lowest 20% of American earners
 finances <- read_csv("Raw Data/finances.csv", 
                      col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 5)
 finances <- subset(finances, select = c("Year", "Assets", "Debt"))
 finances$Year <- as.Date(as.character(finances$Year), format = "%Y")
+
+
 
 # Import, truncate, and format data on health status survey data (lower value = better health)
 hstatus <- read_csv("Raw Data/health-status.csv",
