@@ -10,7 +10,15 @@ eligibility |>
   ylim(0, 1.4) +
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
-  ggtitle("Medicaid Eligibility Trend")
+  ggtitle("Medicaid Eligibility Trend") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
 
 
 
@@ -40,7 +48,16 @@ ervisits |> ggplot() +
   ylim(200, 450) +
   xlab("Year") + 
   ylab("Number of ER Visits") +
-  ggtitle("Emergency Room Visits per Thousand Americans")
+  ggtitle("Emergency Room Visits per Thousand Americans") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+
 
 
 
@@ -55,7 +72,15 @@ finances |> ggplot(aes(x = Year)) +
   scale_color_identity(name = '',
                        breaks = c('blue', 'red'),
                        labels = c("Assets", "Debt"),
-                       guide = 'legend')
+                       guide = 'legend') +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
 
 
 
@@ -66,7 +91,15 @@ hstatus |> ggplot(aes(x = Year)) +
   scale_color_identity(name = '',
                        breaks = c('blue4', 'darkgreen'),
                        labels = c("White", "Black"),
-                       guide = 'legend')
+                       guide = 'legend') +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
 
 
 
@@ -74,10 +107,19 @@ hstatus |> ggplot(aes(x = Year)) +
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct, color = 'red'), size = 1.5) +
   geom_vline(aes(xintercept = as.Date(Year[9]), color = "blue"), linetype = 4, size = 1.75) +
+  #ylim(0,22) +
   xlab("Year") + 
   ylab("Percentage") +
   ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
-  theme(legend.position="none")
+  theme(legend.position="none") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = 'black', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = 'black', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
 
 
 
