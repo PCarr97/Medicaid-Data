@@ -1,5 +1,5 @@
 ---
-title: "Data Exploration"
+title: "Medicaid Data Exploration"
 author: "Patrick Carr"
 date: "02-07-2023"
 output:
@@ -11,26 +11,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Data Exploration
+This exploration will look at the impact of the increase in Medicaid eligibility as a percentage of the federal poverty line.
+
+I will be exploring trends in five separate data sets. First, I will look at the number of emergency room visits per thousand Americans:
+
 ```{r}
-setwd("C:/Users/Patrick Carr/Documents/R/Projects/Medicaid-Data")
-install.packages('pacman')
-library(pacman)
-p_load(tidyverse, janitor, lubridate, dplyr, ggplot2)
-
-ervisits <- read_csv("Raw Data/er-visits.csv", 
-                     col_names = c("Year", "Visits"), skip = 2)
-ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
-```
-
-
-## Data Overview
-
-This data exploration employs the following datasets:
-
-1. Emergency Room Visits - Number of emergency room visits per thousand Americans.
-
-```{r cars}
-summary(ervisits)
+summary(ervisits$Visits)
 ```
 
 ## Data Trends
