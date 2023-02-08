@@ -1,0 +1,57 @@
+---
+title: "Data Exploration"
+author: "Patrick Carr"
+date: "02-07-2023"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("C:/Users/Patrick Carr/Documents/R/Projects/Medicaid-Data")
+install.packages('pacman')
+library(pacman)
+p_load(tidyverse, janitor, lubridate, dplyr, ggplot2)
+
+ervisits <- read_csv("Raw Data/er-visits.csv", 
+                     col_names = c("Year", "Visits"), skip = 2)
+ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
+```
+
+
+## Data Overview
+
+This data exploration employs the following datasets:
+
+1. Emergency Room Visits - Number of emergency room visits per thousand Americans.
+
+```{r cars}
+summary(ervisits)
+```
+
+## Data Trends
+
+This trend shows the average percentage of the poverty line to qualify for Medicaid coverage. In 2013, the data leaps up to 138% due to the implementation of the Affordable Care Act.
+
+```{r pressure, echo=FALSE}
+eligibility |> 
+  ggplot() +
+  geom_point(aes(x = Year, y = Percent), size = 2.5, color = "#1d65a0") +
+  ylim(0, 1.4) +
+  xlab("Year") + 
+  ylab("Eligibility as % of Poverty Line") +
+  ggtitle("Medicaid Eligibility Trend") +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+```
+
