@@ -43,7 +43,7 @@ hstatus <- cbind(Year = rownames(hstatus), hstatus)
 rownames(hstatus) <- 1:nrow(hstatus)
 hstatus$Year <- as.Date(as.character(hstatus$Year), format = "%Y")
 hstatus[,2:23] = apply(hstatus[,2:23], 2, function(x) as.numeric(as.character(x)))
-colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Under6", "6to17", "18to44",
-                       "18to24", "25to44", "45to54", "55to64", "Over65", "65to74", "Over75", "Male", 
-                       "Female", "White", "Black", "Hispanic", "Under100pct", "100to199pct", "200to399pct", 
+colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Under6", "Btwn6and17", "Btwn18and44",
+                       "Btwn18and24", "Btwn25and44", "Btwn45and54", "Btwn55and64", "Over65", "Btw65and74", "Over75", "Male", 
+                       "Female", "White", "Black", "Hispanic", "Under100pct", "Btwn100and199pct", "Btwn200and399pct", 
                        "Over400pct")

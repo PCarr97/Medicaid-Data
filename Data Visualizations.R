@@ -105,6 +105,43 @@ hstatus |> ggplot(aes(x = Year)) +
 
 
 #############################################################################################################
+#Health status of those under poverty line
+hstatus |> ggplot(aes(x = Year)) + 
+  geom_line(aes(y = Under100pct, color = '#00853f'), size = 1.5) +
+  geom_line(aes(y = Btwn100and199pct, color = 'red'), size = 1.5) +
+  geom_line(aes(y = Btwn200and399pct, color = 'purple'), size = 1.5) +
+  geom_line(aes(y = Over400pct, color = 'yellow'), size = 1.5) +
+  geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
+  xlab("Year") + 
+  ylab("Percentage") +
+  ggtitle("Percentage of Reporting Fair or Poor Health by Income") + 
+  scale_color_identity(name = '',
+                      breaks = c('#00853f', 'red', 'purple', 'yellow'),
+                       labels = c("Beneath Poverty Line", "100-199% of Poverty Line", 
+                                  "200-399% of Poverty Line", "Above 400% of Poverty Line"),
+                       guide = 'legend') +
+  theme(legend.position="none") +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Example of combining two data sets #
 ggplot() +
   geom_point(data = eligibility, aes(x = Year, y = Percent), size = 2.5, color = "blue") +
