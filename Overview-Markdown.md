@@ -93,19 +93,19 @@ Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibi
 In 2013, the eligibility leaps up to 138% due to the implementation of
 the Affordable Care Act.
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](Overview-Markdown_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 The following data trends will attempt to identify trends that may have
 been driven by this leap upwards to 138%.
 
 First, let’s look at trend in hospital visits:
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](Overview-Markdown_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 Then let’s look at Americans foregoing medical care:
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](Overview-Markdown_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Next we’ll look at assets and debts of the poorest Americans:
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](Overview-Markdown_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 Health status of those under the poverty line:
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](Overview-Markdown_files/figure-markdown_github/unnamed-chunk-12-1.png)

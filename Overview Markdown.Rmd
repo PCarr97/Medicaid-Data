@@ -2,7 +2,9 @@
 title: "Medicaid Data Trends"
 author: "Patrick Carr"
 date: "02-07-2023"
-output: md_document
+output: 
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
