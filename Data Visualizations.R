@@ -104,8 +104,6 @@ hstatus |> ggplot(aes(x = Year)) +
         plot.title = element_text(size = 14, face = "bold"))
 
 
-
-
 #############################################################################################################
 # Example of combining two data sets #
 ggplot() +
