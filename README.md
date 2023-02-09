@@ -1,7 +1,4 @@
-# Medicaid-Data
-
 Simple examination of Medicaid data; demonstration of data import, simple wrangling, and data visualization. This analysis relies on the following publically available datasets:
-
 
 eligibility.csv - National eligibility as a percentage of the poverty line from the Kaiser Family Foundation
 

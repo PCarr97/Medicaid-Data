@@ -1,18 +1,13 @@
 ---
-title: "Medicaid Data Exploration"
+title: "Medicaid Data Trends"
 author: "Patrick Carr"
 date: "02-07-2023"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Data Exploration
-This exploration will look at the impact of the increase in Medicaid eligibility as a percentage of the federal poverty line.
-
-I will be exploring trends in five separate data sets. First, I will look at the number of emergency room visits per thousand Americans, pear year:
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, include = FALSE}
 install.packages('pacman', repos = "http://cran.us.r-project.org")
@@ -24,31 +19,49 @@ eligibility <- read_csv("Raw Data/eligibility.csv",
                         col_names = c("Year", "Percent"), skip = 2)
 eligibility$Year <- as.Date(as.character(eligibility$Year), format = "%Y")
 
+```
+
+## Data Exploration
+This exploration will look at the impact of the increase in Medicaid eligibility as a percentage of the federal poverty line.
+
+I will be exploring trends in four separate data sets. First, I will look at the number of emergency room visits per thousand Americans, pear year, as measured by the [Kaiser Family Foundation](https://www.kff.org/other/state-indicator/emergency-room-visits-by-ownership/?activeTab=graph&currentTimeframe=0&startTimeframe=16&selectedDistributions=total&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D):
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+ervisits <- read_csv("Raw Data/er-visits.csv", 
+                     col_names = c("Year", "Visits"), skip = 2)
+ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
+
+print("Emergency Room Visits Per Thousand Americans")
+summary(ervisits$Visits)
+```
 
 
+Second, I will explore the percentage of Americans who forego medical care due to cost per year with data from the [State Health Data Compare Assistance Center](https://statehealthcompare.shadac.org/landing/178/percent-of-adults-who-could-not-get-medical-care-when-needed-due-to-cost-by-total-2011-to-2021) :
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Import and format data on Americans foregoing medical care due to cost
 forego <- read_csv("Raw Data/foregoing-care.csv", 
                    col_names = c("Abv", "Location", "Year", "Format", "Percent", "MOE"), skip = 6)
 forego <- subset(forego, select = c("Year", "Percent"))
 forego$Year <- as.Date(as.character(forego$Year), format = "%Y")
 
+print("Percentage of Americans Reporting Foregoing Medical Care Due to Cost")
+summary(forego$Percent)
+```
 
-
-# Import and format data on ER visits per 1000 Americans
-ervisits <- read_csv("Raw Data/er-visits.csv", 
-                     col_names = c("Year", "Visits"), skip = 2)
-ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
-
-
-
-# Import and format data on assets, in thousands, of lowest 20% of American earners
+Third, I will explore the net assets and debts of Americans in the lowest 20th percentile of income earners per year using data from the [Federal Reserve's Consumer Finances Survey](https://www.federalreserve.gov/econres/scf/dataviz/scf/chart/#series:Before_Tax_Income;demographic:inccat;population:1;units:median;range:1989,2019):
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 finances <- read_csv("Raw Data/finances.csv", 
                      col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 5)
 finances <- subset(finances, select = c("Year", "Assets", "Debt"))
 finances$Year <- as.Date(as.character(finances$Year), format = "%Y")
 
+print("Assets and Debts of Lowest 20% of American Earners")
+summary(finances[,(2-3)])
+```
 
+Finally, I will explore the health statuses of Americans per year using data from the [Center for Disease Control](https://www.cdc.gov/nchs/hus/topics/health-status.htm#explore-data). This data reports the percentage of Americans reporting "fair" or "poor" health by year.
 
+This dataset separates health statuses by demographics, including gender:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Import, truncate, and format data on health status survey data (lower value = better health)
 hstatus <- read_csv("Raw Data/health-status.csv",
                     col_names = c("Year", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", 
@@ -63,20 +76,32 @@ colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Und
                        "18to24", "25to44", "45to54", "55to64", "Over65", "65to74", "Over75", "Male", 
                        "Female", "White", "Black", "Hispanic", "Under100pct", "100to199pct", "200to399pct", 
                        "Over400pct")
+
+print("Health Status by Gender")
+summary(hstatus[c("Male", "Female")])
 ```
 
-Below are the summary statistics for emergency room visits.
+Race:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
-ervisits <- read_csv("Raw Data/er-visits.csv", 
-                     col_names = c("Year", "Visits"), skip = 2)
-ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
-summary(ervisits$Visits)
+print("Health Status by Race")
+summary(hstatus[c("White", "Black", "Hispanic")])
 ```
+
+And income level. These variables report health statuses for Americans based on their income as a percentage of the federal poverty line (e.g., the variable "100to199pct" is the health status of individuals earning between 100% and 199% of the poverty line).
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+print("Health Status by Income Level")
+summary(hstatus[c("Under100pct", "100to199pct", "200to399pct", "Over400pct")])
+```
+
+
+
+
+
 ## Data Trends
 
-This trend shows the average percentage of the poverty line to qualify for Medicaid coverage. In 2013, the data leaps up to 138% due to the implementation of the Affordable Care Act.
+This trend shows the average percentage of the poverty line to qualify for Medicaid coverage (this data was retrieved from the [Kaiser Family Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/?currentTimeframe=0&selectedDistributions=january-2002--april-2003--july-2004--july-2005--july-2006--january-2008--january-2009--december-2009--january-2011--january-2012--january-2013--january-2014--january-2015--january-2016--january-2017--january-2018--january-2019--january-2020--january-2021--january-2022&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D)). In 2013, the eligibility leaps up to 138% due to the implementation of the Affordable Care Act.
 
-```{r pressure, echo=FALSE}
+```{r , echo = FALSE, message = FALSE, warning = FALSE}
 eligibility |> 
   ggplot() +
   geom_point(aes(x = Year, y = Percent), size = 2.5, color = "#1d65a0") +
@@ -84,6 +109,90 @@ eligibility |>
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
   ggtitle("Medicaid Eligibility Trend") +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+```
+
+The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%.
+
+First, let's look at trend in hospital visits:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+ervisits |> ggplot() +
+  geom_line(aes(x = Year, y = Visits), size = 1.5, color = '#7d0540') +
+  geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  ylim(200, 450) +
+  xlab("Year") + 
+  ylab("Number of ER Visits") +
+  ggtitle("Emergency Room Visits per Thousand Americans") +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+
+```
+
+Then let's look at Americans foregoing medical care:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+forego |> ggplot() +
+  geom_line(aes(x = Year, y = Percent), size = 1.5, color = "#f19633") +
+  geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  ylim(0, 0.17) +
+  xlab("Year") +
+  ylab("% Foregoing") +
+  ggtitle("Percentage Foregoing Medical Care Due to Cost") +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+```
+
+Next we'll look at assets and debts of the poorest Americans:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+finances |> ggplot(aes(x = Year)) +
+  geom_point(aes(y = Debt, color = '#fc5c88'), size = 2.75) +
+  geom_point(aes(y = Assets, color = "black"), size = 2.75) +
+  geom_vline(aes(xintercept = as.Date(Year[5])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  xlab("Year") + 
+  ylab("Amount in Thousands") +
+  ggtitle("Debts and Assets of Lowest 20% of American Earners") +
+  scale_color_identity(name = '',
+                       breaks = c('black', '#fc5c88'),
+                       labels = c("Assets", "Debt"),
+                       guide = 'legend') +
+  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+```
+
+Health status of those under the poverty line:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+hstatus |> ggplot(aes(x = Year)) + 
+  geom_line(aes(y = Under100pct), color = '#00853f', size = 1.5) +
+  geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
+  ylim(18,22) +
+  xlab("Year") + 
+  ylab("Percentage") +
+  ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
+  theme(legend.position="none") +
   theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
