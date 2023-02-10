@@ -24,7 +24,8 @@ eligibility$Year <- as.Date(as.character(eligibility$Year), format = "%Y")
 ```
 
 ## Data Exploration
-This exploration will look at the impact of the increase in Medicaid eligibility as a percentage of the federal poverty line.
+
+This simple demonstration will explore the impact of the increase in Medicaid eligibility as a percentage of the federal poverty line.
 
 I will be exploring trends in four separate data sets. First, I will look at the number of emergency room visits per thousand Americans, pear year, as measured by the [Kaiser Family Foundation](https://www.kff.org/other/state-indicator/emergency-room-visits-by-ownership/?activeTab=graph&currentTimeframe=0&startTimeframe=16&selectedDistributions=total&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D):
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -37,7 +38,7 @@ summary(ervisits$Visits)
 ```
 
 
-Second, I will explore the percentage of Americans who forego medical care due to cost per year with data from the [State Health Data Compare Assistance Center](https://statehealthcompare.shadac.org/landing/178/percent-of-adults-who-could-not-get-medical-care-when-needed-due-to-cost-by-total-2011-to-2021) :
+Second, I will explore the percentage of Americans who report foregoing medical care due to cost per year with data from the [State Health Data Compare Assistance Center](https://statehealthcompare.shadac.org/landing/178/percent-of-adults-who-could-not-get-medical-care-when-needed-due-to-cost-by-total-2011-to-2021) :
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Import and format data on Americans foregoing medical care due to cost
 forego <- read_csv("Raw Data/foregoing-care.csv", 
@@ -49,7 +50,7 @@ print("Percentage of Americans Reporting Foregoing Medical Care Due to Cost")
 summary(forego$Percent)
 ```
 
-Third, I will explore the net assets and debts of Americans in the lowest 20th percentile of income earners per year using data from the [Federal Reserve's Consumer Finances Survey](https://www.federalreserve.gov/econres/scf/dataviz/scf/chart/#series:Before_Tax_Income;demographic:inccat;population:1;units:median;range:1989,2019):
+Third, I will examine the net assets and debts of Americans in the lowest 20th percentile of income earners per year using data from the [Federal Reserve's Consumer Finances Survey](https://www.federalreserve.gov/econres/scf/dataviz/scf/chart/#series:Before_Tax_Income;demographic:inccat;population:1;units:median;range:1989,2019):
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 finances <- read_csv("Raw Data/finances.csv", 
                      col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 5)
@@ -60,7 +61,7 @@ print("Assets and Debts of Lowest 20% of American Earners")
 summary(finances[,(2-3)])
 ```
 
-Finally, I will explore the health statuses of Americans per year using data from the [Center for Disease Control](https://www.cdc.gov/nchs/hus/topics/health-status.htm#explore-data). This data reports the percentage of Americans reporting "fair" or "poor" health by year.
+Finally, I will explore the reported health statuses of Americans per year using data from the [Center for Disease Control](https://www.cdc.gov/nchs/hus/topics/health-status.htm#explore-data). This data reports the percentage of Americans claiming "fair" or "poor" health by year.
 
 This dataset separates health statuses by demographics, including gender:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -89,10 +90,10 @@ print("Health Status by Race")
 summary(hstatus[c("White", "Black", "Hispanic")])
 ```
 
-And income level. These variables report health statuses for Americans based on their income as a percentage of the federal poverty line (e.g., the variable "100to199pct" is the health status of individuals earning between 100% and 199% of the poverty line).
+And income level. These variables report health statuses for Americans based on their income as a percentage of the federal poverty line (e.g., the variable "100to199pct" is the reported health status of individuals earning between 100% and 199% of the poverty line).
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 print("Health Status by Income Level")
-summary(hstatus[c("Under100pct", "100to199pct", "200to399pct", "Over400pct")])
+summary(hstatus[c("Under100pct", "Btwn100and199pct", "Btwn200and399pct", "Over400pct")])
 ```
 
 
@@ -111,7 +112,7 @@ eligibility |>
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
   ggtitle("Medicaid Eligibility Trend") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -121,7 +122,7 @@ eligibility |>
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
-The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%.
+The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%, with the blue dashed line signifying the imlementation of the increased eligibility limit.
 
 First, let's look at trend in hospital visits:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -132,7 +133,7 @@ ervisits |> ggplot() +
   xlab("Year") + 
   ylab("Number of ER Visits") +
   ggtitle("Emergency Room Visits per Thousand Americans") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -143,7 +144,9 @@ ervisits |> ggplot() +
 
 ```
 
-Then let's look at Americans foregoing medical care:
+The Affordable Care Act appears to have no impact on the number of Americans visiting emergency rooms. There is a noticeable decline in 2020 which is almost certainly due to the Covid-19 public health emergency rather than a delayed response to changes in Medicaid eligibility.
+
+Next let's exlpore Americans foregoing medical care:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 forego |> ggplot() +
   geom_line(aes(x = Year, y = Percent), size = 1.5, color = "#f19633") +
@@ -152,7 +155,7 @@ forego |> ggplot() +
   xlab("Year") +
   ylab("% Foregoing") +
   ggtitle("Percentage Foregoing Medical Care Due to Cost") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -161,6 +164,8 @@ forego |> ggplot() +
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"))
 ```
+
+Unlike emergency room visits, the percentage of Americans foregoing care due to cost burdens seems to have been impacted by the Affordable Care Act. The percentage has seen a steady decline since 2013, with only 10% reporting foregoing care in 2021.
 
 Next we'll look at assets and debts of the poorest Americans:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -175,7 +180,7 @@ finances |> ggplot(aes(x = Year)) +
                        breaks = c('black', '#fc5c88'),
                        labels = c("Assets", "Debt"),
                        guide = 'legend') +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -185,7 +190,11 @@ finances |> ggplot(aes(x = Year)) +
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
-Health status of those under the poverty line:
+We would expect Medicaid expansion to have na impact on the personal finances of the poorest Americans given (1) the increased financial security and reduced risk of medical bankruptcy for those with health insurance as opposed to the uninsured, and (2) the presences of state-imposed asset ceilings restricting Medicaid eligibility regardless of one's income. 
+
+Unfortunately, this dataset is not particularly robust, with only seven data points per metric, per year. However, we can see that after 2013, the trend of declining assets and increasing debt appears to have been disrupted.
+
+Next, we'll explore the health status of those living under the federal poverty line:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct), color = '#00853f', size = 1.5) +
@@ -195,7 +204,7 @@ hstatus |> ggplot(aes(x = Year)) +
   ylab("Percentage") +
   ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
   theme(legend.position="none") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -205,3 +214,4 @@ hstatus |> ggplot(aes(x = Year)) +
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
+There does not appear to be a cohesive narrative in this data. The pattern is jagged, with the Medicaid expansion not appearing to have an observable impact on the percentage of the impoverished reporting subpar health. While there is a decline between 2013 and 2014, this is not a compelling trend. The decline can be potentially be explained by low-income Americans reporting improved health with the expectation that they will attain health insurance, only to be left uninsured due to *National Federation of Independent Business v. Sebelius* limiting the expansion of state Medicaid programs or a lack of education or outreach regarding eligibility and enrollment.
