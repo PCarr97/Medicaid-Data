@@ -11,7 +11,7 @@ eligibility |>
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
   ggtitle("Medicaid Eligibility Trend") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -30,7 +30,7 @@ forego |> ggplot() +
   xlab("Year") +
   ylab("% Foregoing") +
   ggtitle("Percentage Foregoing Medical Care Due to Cost") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -50,7 +50,7 @@ ervisits |> ggplot() +
   xlab("Year") + 
   ylab("Number of ER Visits") +
   ggtitle("Emergency Room Visits per Thousand Americans") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -74,7 +74,7 @@ finances |> ggplot(aes(x = Year)) +
                        breaks = c('black', '#fc5c88'),
                        labels = c("Assets", "Debt"),
                        guide = 'legend') +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -94,7 +94,7 @@ hstatus |> ggplot(aes(x = Year)) +
   ylab("Percentage") +
   ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
   theme(legend.position="none") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
@@ -105,7 +105,7 @@ hstatus |> ggplot(aes(x = Year)) +
 
 
 #############################################################################################################
-#Health status of those under poverty line
+#Health status by income level
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct, color = '#00853f'), size = 1.5) +
   geom_line(aes(y = Btwn100and199pct, color = 'red'), size = 1.5) +
@@ -121,7 +121,7 @@ hstatus |> ggplot(aes(x = Year)) +
                                   "200-399% of Poverty Line", "Above 400% of Poverty Line"),
                        guide = 'legend') +
   theme(legend.position="none") +
-  theme(panel.background = element_rect(fill = '#fcf9f7', color = 'black'),
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
         panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
         panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
         axis.text.x = element_text(color = 'black', size = 11),
