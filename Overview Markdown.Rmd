@@ -192,7 +192,7 @@ finances |> ggplot(aes(x = Year)) +
 
 We would expect Medicaid expansion to have na impact on the personal finances of the poorest Americans given (1) the increased financial security and reduced risk of medical bankruptcy for those with health insurance as opposed to the uninsured, and (2) the presences of state-imposed asset ceilings restricting Medicaid eligibility regardless of one's income. 
 
-Unfortunately, this dataset is not particularly robust, with only seven data points per metric, per year. However, we can see that after 2013, the trend of declining assets and increasing debt appears to have been disrupted.
+Unfortunately, this dataset only contains seven data points per metric, per year, which does not give us a particularly thorough understanding of the trend. However, we can see that after 2013, the trend of declining assets and increasing debt appears to have been disrupted.
 
 Next, we'll explore the health status of those living under the federal poverty line:
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
