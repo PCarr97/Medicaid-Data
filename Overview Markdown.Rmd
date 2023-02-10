@@ -220,7 +220,7 @@ There does not appear to be a cohesive narrative in this data. The pattern is ja
 
 The same appears to be true for all income levels:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, include = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct, color = '#00836f'), size = 1.5) +
   geom_line(aes(y = Btwn100and199pct, color = '#bb8f00'), size = 1.5) +
