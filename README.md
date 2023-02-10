@@ -153,6 +153,8 @@ regarding eligibility and enrollment.
 
 The same appears to be true for all income levels:
 
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+
 We can see a clear stratification between reported health status and
 income level, with higher incomes corresponding with improved health and
 less variation. However, no income strata appears to have seen a
