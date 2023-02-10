@@ -64,9 +64,9 @@ ervisits |> ggplot() +
 
 #Finances plot
 finances |> ggplot(aes(x = Year)) +
-  geom_point(aes(y = Debt, color = '#fc5c88'), size = 2.75) +
-  geom_point(aes(y = Assets, color = "black"), size = 2.75) +
-  geom_vline(aes(xintercept = as.Date(Year[5])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  geom_line(aes(y = Debt, color = '#fc5c88'), size = 1.5) +
+  geom_line(aes(y = Assets, color = "black"), size = 1.5) +
+  geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
   xlab("Year") + 
   ylab("Amount in Thousands") +
   ggtitle("Debts and Assets of Lowest 20% of American Earners") +

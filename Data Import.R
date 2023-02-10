@@ -27,7 +27,7 @@ ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
 
 # Import and format data on assets, in thousands, of lowest 20% of American earners
 finances <- read_csv("Raw Data/finances.csv", 
-                     col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 5)
+                     col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 1)
 finances <- subset(finances, select = c("Year", "Assets", "Debt"))
 finances$Year <- as.Date(as.character(finances$Year), format = "%Y")
 
