@@ -2,9 +2,7 @@
 title: "Medicaid Data Trends"
 author: "Patrick Carr"
 date: "02-07-2023"
-output:
-  html_document:
-    df_print: paged
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -122,9 +120,10 @@ eligibility |>
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
-The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%, with the blue dashed line signifying the imlementation of the increased eligibility limit.
+The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%, with the blue dashed line signifying the implementation of the increased eligibility limit.
 
 First, let's look at trend in hospital visits:
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 ervisits |> ggplot() +
   geom_line(aes(x = Year, y = Visits), size = 1.5, color = '#7d0540') +
@@ -147,6 +146,7 @@ ervisits |> ggplot() +
 The Affordable Care Act appears to have no impact on the number of Americans visiting emergency rooms. There is a noticeable decline in 2020 which is almost certainly due to the Covid-19 public health emergency rather than a delayed response to changes in Medicaid eligibility.
 
 Next let's exlpore Americans foregoing medical care:
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 forego |> ggplot() +
   geom_line(aes(x = Year, y = Percent), size = 1.5, color = "#f19633") +
@@ -168,11 +168,12 @@ forego |> ggplot() +
 Unlike emergency room visits, the percentage of Americans foregoing care due to cost burdens seems to have been impacted by the Affordable Care Act. The percentage has seen a steady decline since 2013, with only 10% reporting foregoing care in 2021.
 
 Next we'll look at assets and debts of the poorest Americans:
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 finances |> ggplot(aes(x = Year)) +
-  geom_point(aes(y = Debt, color = '#fc5c88'), size = 2.75) +
-  geom_point(aes(y = Assets, color = "black"), size = 2.75) +
-  geom_vline(aes(xintercept = as.Date(Year[5])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  geom_line(aes(y = Debt, color = '#fc5c88'), size = 1.5) +
+  geom_line(aes(y = Assets, color = "black"), size = 1.5) +
+  geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
   xlab("Year") + 
   ylab("Amount in Thousands") +
   ggtitle("Debts and Assets of Lowest 20% of American Earners") +
@@ -190,14 +191,15 @@ finances |> ggplot(aes(x = Year)) +
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
-We would expect Medicaid expansion to have na impact on the personal finances of the poorest Americans given (1) the increased financial security and reduced risk of medical bankruptcy for those with health insurance as opposed to the uninsured, and (2) the presences of state-imposed asset ceilings restricting Medicaid eligibility regardless of one's income. 
+We would expect Medicaid expansion to have an impact on the personal finances of the poorest Americans given (1) the increased financial security and reduced risk of medical bankruptcy for those with health insurance as opposed to the uninsured, and (2) the presences of state-imposed asset ceilings restricting Medicaid eligibility regardless of one's income. 
 
-Unfortunately, this dataset only contains seven data points per metric, per year, which does not give us a particularly thorough understanding of the trend. However, we can see that after 2013, the trend of declining assets and increasing debt appears to have been disrupted.
+Unfortunately, this dataset only contains two data points after 2013 per metric, per year, which does not give us a particularly thorough understanding of the post-ACA trend. However, we can see that after 2013, the trend of declining assets and increasing debt appears to have been disrupted.
 
 Next, we'll explore the health status of those living under the federal poverty line:
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 hstatus |> ggplot(aes(x = Year)) + 
-  geom_line(aes(y = Under100pct), color = '#00853f', size = 1.5) +
+  geom_line(aes(y = Under100pct), color = '#00836f', size = 1.5) +
   geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
   ylim(18,22) +
   xlab("Year") + 
@@ -214,4 +216,34 @@ hstatus |> ggplot(aes(x = Year)) +
         plot.title = element_text(size = 14, face = "bold"))
 ```
 
-There does not appear to be a cohesive narrative in this data. The pattern is jagged, with the Medicaid expansion not appearing to have an observable impact on the percentage of the impoverished reporting subpar health. While there is a decline between 2013 and 2014, this is not a compelling trend. The decline can be potentially be explained by low-income Americans reporting improved health with the expectation that they will attain health insurance, only to be left uninsured due to *National Federation of Independent Business v. Sebelius* limiting the expansion of state Medicaid programs or a lack of education or outreach regarding eligibility and enrollment.
+There does not appear to be a cohesive narrative in this data. The pattern is jagged, with the Medicaid expansion not appearing to have an observable impact on the percentage of the impoverished reporting subpar health. While there is a decline between 2013 and 2014, this is not a compelling trend. The decline can be potentially be explained by low-income Americans reporting improved health with the expectation that they will attain health insurance, only to be left uninsured due to *National Federation of Independent Business v. Sebelius* limiting the expansion of state Medicaid programs or a lack of education or outreach regarding eligibility and enrollment. 
+
+The same appears to be true for all income levels:
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, include = FALSE}
+hstatus |> ggplot(aes(x = Year)) + 
+  geom_line(aes(y = Under100pct, color = '#00836f'), size = 1.5) +
+  geom_line(aes(y = Btwn100and199pct, color = '#bb8f00'), size = 1.5) +
+  geom_line(aes(y = Btwn200and399pct, color = '#bb0099'), size = 1.5) +
+  geom_line(aes(y = Over400pct, color = '#00bc87'), size = 1.5) +
+  geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
+  xlab("Year") + 
+  ylab("Percentage") +
+  ggtitle("Percentage of Reporting Fair or Poor Health by Income") + 
+  scale_color_identity(name = '',
+                      breaks = c('#00836f', '#bb8f00', '#bb0099', '#00bc87'),
+                       labels = c("Beneath Poverty Line", "100-199% of Poverty Line", 
+                                  "200-399% of Poverty Line", "Above 400% of Poverty Line"),
+                       guide = 'legend') +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"),
+        legend.position = "bottom")
+```
+
+We can see a clear stratification between reported health status and income level, with higher incomes corresponding with improved health and less variation. However, no income strata appears to have seen a significant change after the imlementation of the Affordable Care Act.
