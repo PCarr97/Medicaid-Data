@@ -176,4 +176,4 @@ The same appears to be true for all income levels:
 We can see a clear stratification between reported health status and
 income level, with higher incomes corresponding with improved health and
 less variation. However, no income strata appears to have seen a
-significant change after the implementation of the Affordable Care Act.
+significant change after the implementation of the Affordable Care Act. 
