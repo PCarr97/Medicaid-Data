@@ -170,7 +170,7 @@ The following data trends will attempt to identify trends that may have been dri
 
 First, let's look at trend in hospital visits:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 ervisits |> ggplot() +
   geom_line(aes(x = Year, y = Visits), size = 1.5, color = '#7d0540') +
   geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
