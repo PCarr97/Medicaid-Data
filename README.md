@@ -93,7 +93,7 @@ communities in different magnitues. As the above summary statistics
 imply, black and hispanic Americans are much more likely to report
 “poor” or “fair” health than White americans:
 
-<img src=""Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png">
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png">
 
 Similarly, women are more likely to report subpar health than men:
 
