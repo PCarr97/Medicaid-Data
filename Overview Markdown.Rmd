@@ -13,12 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 install.packages('pacman', repos = "http://cran.us.r-project.org")
 library(pacman)
 p_load(tidyverse, janitor, lubridate, dplyr, ggplot, tinytex)
-
 # Import and format data on Medicaid eligibility cutoffs
 eligibility <- read_csv("Raw Data/eligibility.csv", 
                         col_names = c("Year", "Percent"), skip = 2)
 eligibility$Year <- as.Date(as.character(eligibility$Year), format = "%Y")
-
 ```
 
 ## Data Exploration
@@ -30,7 +28,6 @@ I will be exploring trends in four separate data sets. First, I will look at the
 ervisits <- read_csv("Raw Data/er-visits.csv", 
                      col_names = c("Year", "Visits"), skip = 2)
 ervisits$Year <- as.Date(as.character(ervisits$Year), format = "%Y")
-
 print("Emergency Room Visits Per Thousand Americans")
 summary(ervisits$Visits)
 ```
@@ -43,7 +40,6 @@ forego <- read_csv("Raw Data/foregoing-care.csv",
                    col_names = c("Abv", "Location", "Year", "Format", "Percent", "MOE"), skip = 6)
 forego <- subset(forego, select = c("Year", "Percent"))
 forego$Year <- as.Date(as.character(forego$Year), format = "%Y")
-
 print("Percentage of Americans Reporting Foregoing Medical Care Due to Cost")
 summary(forego$Percent)
 ```
@@ -54,7 +50,6 @@ finances <- read_csv("Raw Data/finances.csv",
                      col_names = c("Year", "Status", "Income", "Assets", "Debt"), skip = 5)
 finances <- subset(finances, select = c("Year", "Assets", "Debt"))
 finances$Year <- as.Date(as.character(finances$Year), format = "%Y")
-
 print("Assets and Debts of Lowest 20% of American Earners")
 summary(finances[,(2-3)])
 ```
@@ -77,7 +72,6 @@ colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Und
                        "Btwn18and24", "Btwn25and44", "Btwn45and54", "Btwn55and64", "Over65", "Btw65and74", "Over75", "Male", 
                        "Female", "White", "Black", "Hispanic", "Under100pct", "Btwn100and199pct", "Btwn200and399pct", 
                        "Over400pct")
-
 print("Health Status by Gender")
 summary(hstatus[c("Male", "Female")])
 ```
@@ -115,7 +109,6 @@ hstatus |> ggplot() +
         axis.title.x = element_text(color = 'black', size = 12.5),
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"))
-
 ```
 
 Similarly, women are more likely to report subpar health than men:
@@ -170,7 +163,7 @@ The following data trends will attempt to identify trends that may have been dri
 
 First, let's look at trend in hospital visits:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 1000}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 ervisits |> ggplot() +
   geom_line(aes(x = Year, y = Visits), size = 1.5, color = '#7d0540') +
   geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
@@ -186,7 +179,6 @@ ervisits |> ggplot() +
         axis.title.x = element_text(color = 'black', size = 12.5),
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"))
-
 ```
 
 The Affordable Care Act appears to have no impact on the number of Americans visiting emergency rooms. There is a noticeable decline in 2020 which is almost certainly due to the Covid-19 public health emergency rather than a delayed response to changes in Medicaid eligibility.
@@ -291,9 +283,6 @@ hstatus |> ggplot(aes(x = Year)) +
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"),
         legend.position = "bottom")
-
 ```
 
 We can see a clear stratification between reported health status and income level, with higher incomes corresponding with improved health and less variation. However, no income strata appears to have seen a significant change after the implementation of the Affordable Care Act.
-
-
