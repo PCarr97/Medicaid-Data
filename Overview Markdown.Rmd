@@ -142,13 +142,13 @@ hstatus |> ggplot() +
 
 ## Data Trends
 
-This trend shows the average percentage of the poverty line to qualify for Medicaid coverage (this data was retrieved from the [Kaiser Family Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/?currentTimeframe=0&selectedDistributions=january-2002--april-2003--july-2004--july-2005--july-2006--january-2008--january-2009--december-2009--january-2011--january-2012--january-2013--january-2014--january-2015--january-2016--january-2017--january-2018--january-2019--january-2020--january-2021--january-2022&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D)). In 2013, the eligibility leaps up to 138% due to the implementation of the Affordable Care Act.
+This chart shows the median national eligibility limit for Medicaid coverage, measured as a percentage of the federal poverty line (this data was retrieved from the [Kaiser Family Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/?currentTimeframe=0&selectedDistributions=january-2002--april-2003--july-2004--july-2005--july-2006--january-2008--january-2009--december-2009--january-2011--january-2012--january-2013--january-2014--january-2015--january-2016--january-2017--january-2018--january-2019--january-2020--january-2021--january-2022&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D)). In 2013, the median eligibility leaps up to 138% due to the implementation of the Affordable Care Act.
 
 ```{r , echo = FALSE, message = FALSE, warning = FALSE}
 eligibility |> 
   ggplot() +
   geom_point(aes(x = Year, y = Percent), size = 2.5, color = "#1d65a0") +
-  ylim(0, 1.4) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0, 1.4)) +
   xlab("Year") + 
   ylab("Eligibility as % of Poverty Line") +
   ggtitle("Medicaid Eligibility Trend") +
@@ -161,6 +161,10 @@ eligibility |>
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"))
 ```
+
+
+It is important to note that this is the *median* value rather than the national eligibility limit.
+
 
 The following data trends will attempt to identify trends that may have been driven by this leap upwards to 138%, with the blue dashed line signifying the implementation of the increased eligibility limit.
 
@@ -193,7 +197,7 @@ Next let's exlpore Americans foregoing medical care:
 forego |> ggplot() +
   geom_line(aes(x = Year, y = Percent), size = 1.5, color = "#f19633") +
   geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
-  ylim(0, 0.17) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0, 0.17)) +
   xlab("Year") +
   ylab("% Foregoing") +
   ggtitle("Percentage Foregoing Medical Care Due to Cost") +
@@ -243,7 +247,7 @@ Next, we'll explore the health status of those living under the federal poverty 
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct), color = '#00836f', size = 1.5) +
   geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
-  ylim(18,22) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(.18, .22)) +
   xlab("Year") + 
   ylab("Percentage") +
   ggtitle("Percentage of Impoverished Reporting Fair or Poor Health") + 
@@ -272,6 +276,7 @@ hstatus |> ggplot(aes(x = Year)) +
   xlab("Year") + 
   ylab("Percentage") +
   ggtitle("Percentage of Reporting Fair or Poor Health by Income") + 
+  #scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   scale_color_identity(name = '',
                       breaks = c('#00836f', '#bb8f00', '#bb0099', '#00bc87'),
                        labels = c("Beneath Poverty Line", "100-199% of Poverty Line", 
@@ -286,11 +291,9 @@ hstatus |> ggplot(aes(x = Year)) +
         axis.title.y = element_text(color = 'black', size = 12.5),
         plot.title = element_text(size = 14, face = "bold"),
         legend.position = "bottom")
+
 ```
 
 We can see a clear stratification between reported health status and income level, with higher incomes corresponding with improved health and less variation. However, no income strata appears to have seen a significant change after the implementation of the Affordable Care Act.
-
-
-## Further Exploration of Health Disparities
 
 

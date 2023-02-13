@@ -57,4 +57,7 @@ colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Und
                        "Btwn18and24", "Btwn25and44", "Btwn45and54", "Btwn55and64", "Over65", "Btw65and74", "Over75", "Male", 
                        "Female", "White", "Black", "Hispanic", "Under100pct", "Btwn100and199pct", "Btwn200and399pct", 
                        "Over400pct")
-hstatus[,2:22] <- lapply(hstatus[,2:22], as.numeric)
+hstatus[,2:23] <- lapply(hstatus[,2:23], as.numeric)
+
+hstatus[,2:23] <- hstatus[,2:23]/100
+view(hstatus)

@@ -101,13 +101,17 @@ Similarly, women are more likely to report subpar health than men:
 
 ## Data Trends
 
-This trend shows the average percentage of the poverty line to qualify
-for Medicaid coverage (this data was retrieved from the [Kaiser Family
+This chart shows the median national eligibility limit for Medicaid
+coverage, measured as a percentage of the federal poverty line (this
+data was retrieved from the [Kaiser Family
 Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/?currentTimeframe=0&selectedDistributions=january-2002--april-2003--july-2004--july-2005--july-2006--january-2008--january-2009--december-2009--january-2011--january-2012--january-2013--january-2014--january-2015--january-2016--january-2017--january-2018--january-2019--january-2020--january-2021--january-2022&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D)).
-In 2013, the eligibility leaps up to 138% due to the implementation of
-the Affordable Care Act.
+In 2013, the median eligibility leaps up to 138% due to the
+implementation of the Affordable Care Act.
 
 ![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+
+It is important to note that this is the *median* value rather than the
+national eligibility limit.
 
 The following data trends will attempt to identify trends that may have
 been driven by this leap upwards to 138%, with the blue dashed line
@@ -173,5 +177,3 @@ We can see a clear stratification between reported health status and
 income level, with higher incomes corresponding with improved health and
 less variation. However, no income strata appears to have seen a
 significant change after the implementation of the Affordable Care Act.
-
-## Further Exploration of Health Disparities
