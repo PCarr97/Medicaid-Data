@@ -9,6 +9,16 @@ eligibility <- read_csv("Raw Data/eligibility.csv",
 eligibility$Year <- as.Date(as.character(eligibility$Year), format = "%Y")
 
 
+# State-level eligibility data
+states <- read_csv("Raw Data/state-eligibility.csv", 
+                   col_names = "X")
+states <- as.data.frame(states[4:55,])
+states <- separate(data = states, col = X, into = c("State", "Before", "After"), sep = ",")
+states$Before <- percent(as.numeric(states$Before), accuracy = 1)
+states$After <- percent(as.numeric(states$After), accuracy = 1)
+states <- states[order(states$After, decreasing = FALSE),]
+
+
 
 # Import and format data on Americans foregoing medical care due to cost
 forego <- read_csv("Raw Data/foregoing-care.csv", 
@@ -47,3 +57,4 @@ colnames(hstatus) <- c("Year", "All_Ages_adj", "All_Ages_crude", "Under18", "Und
                        "Btwn18and24", "Btwn25and44", "Btwn45and54", "Btwn55and64", "Over65", "Btw65and74", "Over75", "Male", 
                        "Female", "White", "Black", "Hispanic", "Under100pct", "Btwn100and199pct", "Btwn200and399pct", 
                        "Over400pct")
+hstatus[,2:22] <- lapply(hstatus[,2:22], as.numeric)
