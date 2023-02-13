@@ -95,6 +95,48 @@ summary(hstatus[c("Under100pct", "Btwn100and199pct", "Btwn200and399pct", "Over40
 ```
 
 
+## Note on Health Disparities
+
+The Center for Disease Control's health status dataset allows us to demonstrate that changes in health status will affect different communities in different magnitues. As the above summary statistics imply, black and hispanic Americans are much more likely to report "poor" or "fair" health than White americans:
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+hstatus |> ggplot() + 
+  geom_boxplot(aes(x = "White", y = White), color = 'black', fill = '#8dd3c7') + 
+  geom_boxplot(aes(x = "Black", y = Black), color = 'black', fill = '#80b1d3') +
+  geom_boxplot(aes(x = "Hispanic", y = Hispanic), color = 'black', fill = '#bebada') +
+  ylab("Health") + 
+  xlab("") + 
+  ggtitle("Reported Health Status by Race") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"))
+
+```
+
+Similarly, women are more likely to report subpar health than men:
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+hstatus |> ggplot() + 
+  geom_boxplot(aes(x = "Male", y = Male), color = 'black', fill = '#80b1d3') + 
+  geom_boxplot(aes(x = "Female", y = Female), color = 'black', fill = '#b3de69') +
+  ylab("Health") + 
+  xlab("") +
+  ggtitle("Reported Health Status by Gender") +
+  theme(panel.background = element_rect(fill = 'white', color = 'black'),
+        panel.grid.major = element_line(color = '#818a92', linetype = 'dotted'),
+        panel.grid.minor = element_line(color = '#818a92', linetype = 'dotted'),
+        axis.text.x = element_text(color = 'black', size = 11),
+        axis.text.y = element_text(color = 'black', size = 11),
+        axis.title.x = element_text(color = 'black', size = 12.5),
+        axis.title.y = element_text(color = 'black', size = 12.5),
+        plot.title = element_text(size = 14, face = "bold"),
+        legend.position = 'none')
+```
 
 
 
@@ -250,3 +292,5 @@ We can see a clear stratification between reported health status and income leve
 
 
 ## Further Exploration of Health Disparities
+
+

@@ -85,6 +85,20 @@ earning between 100% and 199% of the poverty line).
     ##  3rd Qu.:21.57   3rd Qu.:15.00    3rd Qu.:8.675    3rd Qu.:4.375  
     ##  Max.   :21.80   Max.   :15.40    Max.   :9.000    Max.   :4.700
 
+## Note on Health Disparities
+
+The Center for Disease Control’s health status dataset allows us to
+demonstrate that changes in health status will affect different
+communities in different magnitues. As the above summary statistics
+imply, black and hispanic Americans are much more likely to report
+“poor” or “fair” health than White americans:
+
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+
+Similarly, women are more likely to report subpar health than men:
+
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+
 ## Data Trends
 
 This trend shows the average percentage of the poverty line to qualify
@@ -93,7 +107,7 @@ Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibi
 In 2013, the eligibility leaps up to 138% due to the implementation of
 the Affordable Care Act.
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
 The following data trends will attempt to identify trends that may have
 been driven by this leap upwards to 138%, with the blue dashed line
@@ -101,7 +115,7 @@ signifying the implementation of the increased eligibility limit.
 
 First, let’s look at trend in hospital visits:
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 The Affordable Care Act appears to have no impact on the number of
 Americans visiting emergency rooms. There is a noticeable decline in
@@ -111,7 +125,7 @@ eligibility.
 
 Next let’s exlpore Americans foregoing medical care:
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
 Unlike emergency room visits, the percentage of Americans foregoing care
 due to cost burdens seems to have been impacted by the Affordable Care
@@ -120,7 +134,7 @@ reporting foregoing care in 2021.
 
 Next we’ll look at assets and debts of the poorest Americans:
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
 We would expect Medicaid expansion to have an impact on the personal
 finances of the poorest Americans given (1) the increased financial
@@ -138,7 +152,7 @@ been disrupted.
 Next, we’ll explore the health status of those living under the federal
 poverty line:
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-14-1.png)
 
 There does not appear to be a cohesive narrative in this data. The
 pattern is jagged, with the Medicaid expansion not appearing to have an
@@ -153,9 +167,11 @@ regarding eligibility and enrollment.
 
 The same appears to be true for all income levels:
 
-![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-13-1.png)
+![](Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-15-1.png)
 
 We can see a clear stratification between reported health status and
 income level, with higher incomes corresponding with improved health and
 less variation. However, no income strata appears to have seen a
-significant change after the imlementation of the Affordable Care Act.
+significant change after the implementation of the Affordable Care Act.
+
+## Further Exploration of Health Disparities
