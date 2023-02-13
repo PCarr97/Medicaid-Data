@@ -18,7 +18,7 @@ eligibility |>
         axis.text.y = element_text(color = 'black', size = 11),
         axis.title.x = element_text(color = 'black', size = 12.5),
         axis.title.y = element_text(color = 'black', size = 12.5),
-        plot.title = element_text(size = 14, face = "bold"))
+        plot.title = element_text(size = 14))
 
 
 
@@ -66,7 +66,7 @@ ervisits |> ggplot() +
 finances |> ggplot(aes(x = Year)) +
   geom_line(aes(y = Debt, color = '#fc5c88'), size = 1.5) +
   geom_line(aes(y = Assets, color = "black"), size = 1.5) +
-  geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
+  geom_vline(aes(xintercept = as.Date(Year[5])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
   xlab("Year") + 
   ylab("Amount in Thousands") +
   ggtitle("Debts and Assets of Lowest 20% of American Earners") +
