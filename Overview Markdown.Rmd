@@ -93,7 +93,7 @@ summary(hstatus[c("Under100pct", "Btwn100and199pct", "Btwn200and399pct", "Over40
 
 The Center for Disease Control's health status dataset allows us to demonstrate that changes in health status will affect different communities in different magnitues. As the above summary statistics imply, black and hispanic Americans are much more likely to report "poor" or "fair" health than White americans:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 hstatus |> ggplot() + 
   geom_boxplot(aes(x = "White", y = White), color = 'black', fill = '#8dd3c7') + 
   geom_boxplot(aes(x = "Black", y = Black), color = 'black', fill = '#80b1d3') +
@@ -113,7 +113,7 @@ hstatus |> ggplot() +
 
 Similarly, women are more likely to report subpar health than men:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 hstatus |> ggplot() + 
   geom_boxplot(aes(x = "Male", y = Male), color = 'black', fill = '#80b1d3') + 
   geom_boxplot(aes(x = "Female", y = Female), color = 'black', fill = '#b3de69') +
@@ -137,7 +137,7 @@ hstatus |> ggplot() +
 
 This chart shows the median national eligibility limit for Medicaid coverage, measured as a percentage of the federal poverty line (this data was retrieved from the [Kaiser Family Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/?currentTimeframe=0&selectedDistributions=january-2002--april-2003--july-2004--july-2005--july-2006--january-2008--january-2009--december-2009--january-2011--january-2012--january-2013--january-2014--january-2015--january-2016--january-2017--january-2018--january-2019--january-2020--january-2021--january-2022&selectedRows=%7B%22wrapups%22:%7B%22united-states%22:%7B%7D%7D%7D&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D)). In 2013, the median eligibility leaps up to 138% due to the implementation of the Affordable Care Act.
 
-```{r , echo = FALSE, message = FALSE, warning = FALSE}
+```{r , echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 eligibility |> 
   ggplot() +
   geom_point(aes(x = Year, y = Percent), size = 2.5, color = "#1d65a0") +
@@ -185,7 +185,7 @@ The Affordable Care Act appears to have no impact on the number of Americans vis
 
 Next let's exlpore Americans foregoing medical care:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 forego |> ggplot() +
   geom_line(aes(x = Year, y = Percent), size = 1.5, color = "#f19633") +
   geom_vline(aes(xintercept = as.Date(Year[9])), linetype = 'twodash', size = 1.5, color = "#1d65a0") +
@@ -207,7 +207,7 @@ Unlike emergency room visits, the percentage of Americans foregoing care due to 
 
 Next we'll look at assets and debts of the poorest Americans:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 finances |> ggplot(aes(x = Year)) +
   geom_line(aes(y = Debt, color = '#fc5c88'), size = 1.5) +
   geom_line(aes(y = Assets, color = "black"), size = 1.5) +
@@ -235,7 +235,7 @@ Unfortunately, this dataset only contains two data points after 2013 per metric,
 
 Next, we'll explore the health status of those living under the federal poverty line:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct), color = '#00836f', size = 1.5) +
   geom_vline(aes(xintercept = as.Date(Year[9])), color = "#1d65a0", linetype = 'twodash', size = 1.5) +
@@ -258,7 +258,7 @@ There does not appear to be a cohesive narrative in this data. The pattern is ja
 
 The same appears to be true for all income levels:
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300}
 hstatus |> ggplot(aes(x = Year)) + 
   geom_line(aes(y = Under100pct, color = '#00836f'), size = 1.5) +
   geom_line(aes(y = Btwn100and199pct, color = '#bb8f00'), size = 1.5) +
