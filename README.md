@@ -50,25 +50,25 @@ gender:
 
     ## [1] "Health Status by Gender"
 
-    ##       Male           Female      
-    ##  Min.   :8.700   Min.   : 9.100  
-    ##  1st Qu.:8.800   1st Qu.: 9.275  
-    ##  Median :9.000   Median : 9.600  
-    ##  Mean   :8.979   Mean   : 9.600  
-    ##  3rd Qu.:9.100   3rd Qu.: 9.875  
-    ##  Max.   :9.400   Max.   :10.100
+    ##       Male             Female       
+    ##  Min.   :0.08700   Min.   :0.09100  
+    ##  1st Qu.:0.08800   1st Qu.:0.09275  
+    ##  Median :0.09000   Median :0.09600  
+    ##  Mean   :0.08979   Mean   :0.09600  
+    ##  3rd Qu.:0.09100   3rd Qu.:0.09875  
+    ##  Max.   :0.09400   Max.   :0.10100
 
 Race:
 
     ## [1] "Health Status by Race"
 
-    ##      White          Black          Hispanic    
-    ##  Min.   :8.20   Min.   :13.40   Min.   :12.00  
-    ##  1st Qu.:8.35   1st Qu.:13.60   1st Qu.:12.47  
-    ##  Median :8.65   Median :14.25   Median :12.90  
-    ##  Mean   :8.60   Mean   :14.17   Mean   :12.81  
-    ##  3rd Qu.:8.80   3rd Qu.:14.55   3rd Qu.:13.18  
-    ##  Max.   :9.00   Max.   :15.00   Max.   :13.30
+    ##      White            Black           Hispanic     
+    ##  Min.   :0.0820   Min.   :0.1340   Min.   :0.1200  
+    ##  1st Qu.:0.0835   1st Qu.:0.1360   1st Qu.:0.1247  
+    ##  Median :0.0865   Median :0.1425   Median :0.1290  
+    ##  Mean   :0.0860   Mean   :0.1417   Mean   :0.1281  
+    ##  3rd Qu.:0.0880   3rd Qu.:0.1455   3rd Qu.:0.1318  
+    ##  Max.   :0.0900   Max.   :0.1500   Max.   :0.1330
 
 And income level. These variables report health statuses for Americans
 based on their income as a percentage of the federal poverty line (e.g.,
@@ -77,13 +77,13 @@ earning between 100% and 199% of the poverty line).
 
     ## [1] "Health Status by Income Level"
 
-    ##   Under100pct    Btwn100and199pct Btwn200and399pct   Over400pct   
-    ##  Min.   :19.80   Min.   :14.20    Min.   :7.900    Min.   :3.900  
-    ##  1st Qu.:20.68   1st Qu.:14.40    1st Qu.:8.225    1st Qu.:4.025  
-    ##  Median :21.10   Median :14.90    Median :8.400    Median :4.250  
-    ##  Mean   :21.08   Mean   :14.77    Mean   :8.421    Mean   :4.250  
-    ##  3rd Qu.:21.57   3rd Qu.:15.00    3rd Qu.:8.675    3rd Qu.:4.375  
-    ##  Max.   :21.80   Max.   :15.40    Max.   :9.000    Max.   :4.700
+    ##   Under100pct     Btwn100and199pct Btwn200and399pct    Over400pct     
+    ##  Min.   :0.1980   Min.   :0.1420   Min.   :0.07900   Min.   :0.03900  
+    ##  1st Qu.:0.2067   1st Qu.:0.1440   1st Qu.:0.08225   1st Qu.:0.04025  
+    ##  Median :0.2110   Median :0.1490   Median :0.08400   Median :0.04250  
+    ##  Mean   :0.2108   Mean   :0.1477   Mean   :0.08421   Mean   :0.04250  
+    ##  3rd Qu.:0.2157   3rd Qu.:0.1500   3rd Qu.:0.08675   3rd Qu.:0.04375  
+    ##  Max.   :0.2180   Max.   :0.1540   Max.   :0.09000   Max.   :0.04700
 
 ## Note on Health Disparities
 
@@ -93,11 +93,11 @@ communities in different magnitues. As the above summary statistics
 imply, black and hispanic Americans are much more likely to report
 “poor” or “fair” health than White americans:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="75%" />
 
 Similarly, women are more likely to report subpar health than men:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-9-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="75%" />
 
 ## Data Trends
 
@@ -108,7 +108,7 @@ Foundation](https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibi
 In 2013, the median eligibility leaps up to 138% due to the
 implementation of the Affordable Care Act.
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="75%" />
 
 It is important to note that this is the *median* value rather than the
 national eligibility limit.
@@ -119,8 +119,7 @@ signifying the implementation of the increased eligibility limit.
 
 First, let’s look at trend in hospital visits:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-11-1.png" width = 75%>
-
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="75%" />
 
 The Affordable Care Act appears to have no impact on the number of
 Americans visiting emergency rooms. There is a noticeable decline in
@@ -130,7 +129,7 @@ eligibility.
 
 Next let’s exlpore Americans foregoing medical care:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-12-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="75%" />
 
 Unlike emergency room visits, the percentage of Americans foregoing care
 due to cost burdens seems to have been impacted by the Affordable Care
@@ -139,7 +138,7 @@ reporting foregoing care in 2021.
 
 Next we’ll look at assets and debts of the poorest Americans:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-13-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="75%" />
 
 We would expect Medicaid expansion to have an impact on the personal
 finances of the poorest Americans given (1) the increased financial
@@ -157,9 +156,7 @@ been disrupted.
 Next, we’ll explore the health status of those living under the federal
 poverty line:
 
-
-<img src="Visualization Files/impoverished-hstatus.png" width = 75%>
-
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="75%" />
 
 There does not appear to be a cohesive narrative in this data. The
 pattern is jagged, with the Medicaid expansion not appearing to have an
@@ -174,9 +171,9 @@ regarding eligibility and enrollment.
 
 The same appears to be true for all income levels:
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-15-1.png" width = 75%>
+<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="75%" />
 
 We can see a clear stratification between reported health status and
 income level, with higher incomes corresponding with improved health and
 less variation. However, no income strata appears to have seen a
-significant change after the implementation of the Affordable Care Act. 
+significant change after the implementation of the Affordable Care Act.
