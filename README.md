@@ -158,7 +158,8 @@ Next, we’ll explore the health status of those living under the federal
 poverty line:
 
 
-<img src="Overview-Markdown_files/figure-markdown_strict/unnamed-chunk-14-1.png" width = 75%>
+<img src="Visualization Files/impoverished-hstatus.png" width = 75%>
+
 
 There does not appear to be a cohesive narrative in this data. The
 pattern is jagged, with the Medicaid expansion not appearing to have an
